@@ -1,0 +1,61 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Shortens given URL",
+        "title": "Short URL API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {},
+        "license": {},
+        "version": "1.0"
+    },
+    "basePath": "/v2",
+    "paths": {
+        "/new": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Shortens URL",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.URLWrapper"
+                        }
+                    }
+                }
+            }
+        },
+        "/{short_url}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.URLWrapper"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "controller.URLWrapper": {
+            "type": "object",
+            "properties": {
+                "long": {
+                    "type": "string"
+                },
+                "short": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+basePath: /v2
+definitions:
+  controller.URLWrapper:
+    properties:
+      long:
+        type: string
+      short:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Shortens given URL
+  license: {}
+  termsOfService: http://swagger.io/terms/
+  title: Short URL API
+  version: "1.0"
+paths:
+  /{short_url}:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.URLWrapper'
+  /new:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.URLWrapper'
+      summary: Shortens URL
+swagger: "2.0"

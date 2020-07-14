@@ -29,8 +29,9 @@ func Connect() (db *gorm.DB, err error) {
 		"host=%s port=%d user=%s dbname=%s password=%s sslmode=disable",
 		dbHost, dbPort, dbUser, dbName, dbPassword,
 	)
-	
+
 	db, err = gorm.Open("postgres", dbInfo)
 	Instance = db
+
 	return db, err
 }
