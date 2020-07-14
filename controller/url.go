@@ -12,8 +12,8 @@ import (
 // URLWrapper ---
 type URLWrapper struct {
 	gorm.Model
-	Short string `json:"short" gorm:"primary_key"`
-	Long  string `json:"long"`
+	ShortURL string `json:"shortURL" gorm:"primary_key"`
+	FullURL  string `json:"fullURL"`
 }
 
 // Shorten - returns URLWrapper with shortened url as Slug
@@ -23,8 +23,8 @@ func Shorten(url string) (newURL URLWrapper) {
 		panic(err)
 	}
 
-	newURL.Long = url
-	newURL.Short = id
+	newURL.FullURL = url
+	newURL.ShortURL = id
 
 	return newURL
 }
@@ -41,21 +41,21 @@ func NewShortURL(c echo.Context) error {
 		return err
 	}
 
-	ShortenedURL := Shorten(URL.Long)
+	ShortenedURL := Shorten(URL.FullURL)
 
 	database.Instance.Create(&ShortenedURL)
 
 	return c.JSON(http.StatusOK, &ShortenedURL)
 }
 
-// GetLongURL - get the long url by short
+// GetFullURL - get the long url by short
 // @Produce  json
 // @Success 200 {object} URLWrapper
 // @Router /{short_url} [get]
-func GetLongURL(c echo.Context) error {
-	short := c.Param("short")
+func GetFullURL(c echo.Context) error {
+	sid := c.Param("sid")
 	URL := URLWrapper{}
-	database.Instance.Where(&URLWrapper{Short: short}).First(&URL)
+	database.Instance.Where(&URLWrapper{ShortURL: sid}).First(&URL)
 
 	return c.JSON(http.StatusOK, &URL)
 }

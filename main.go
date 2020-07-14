@@ -14,10 +14,7 @@ import (
 
 // @title Short URL API
 // @version 1.0
-// @description Shortens given URL
-// @termsOfService http://swagger.io/terms/
-
-// @BasePath /v2
+// @description A little API that shortens URL's
 func main() {
 	helpers.InitShortID()
 	db, err := database.Connect()
@@ -33,9 +30,9 @@ func main() {
 	database.Instance.AutoMigrate(&controller.URLWrapper{})
 
 	e := echo.New()
-	e.GET("/swagger/*", echoSwagger.WrapHandler)
 	e.GET("/", controller.Root)
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 	e.POST("/new", controller.NewShortURL)
-	e.GET("/:short", controller.GetLongURL)
+	e.GET("/:sid", controller.GetFullURL)
 	e.Logger.Fatal(e.Start(":8080"))
 }

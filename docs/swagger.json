@@ -1,14 +1,12 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Shortens given URL",
+        "description": "A little API that shortens URL's",
         "title": "Short URL API",
-        "termsOfService": "http://swagger.io/terms/",
         "contact": {},
         "license": {},
         "version": "1.0"
     },
-    "basePath": "/v2",
     "paths": {
         "/new": {
             "post": {
@@ -49,10 +47,10 @@
         "controller.URLWrapper": {
             "type": "object",
             "properties": {
-                "long": {
+                "fullURL": {
                     "type": "string"
                 },
-                "short": {
+                "shortURL": {
                     "type": "string"
                 }
             }

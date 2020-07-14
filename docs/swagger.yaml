@@ -1,17 +1,15 @@
-basePath: /v2
 definitions:
   controller.URLWrapper:
     properties:
-      long:
+      fullURL:
         type: string
-      short:
+      shortURL:
         type: string
     type: object
 info:
   contact: {}
-  description: Shortens given URL
+  description: A little API that shortens URL's
   license: {}
-  termsOfService: http://swagger.io/terms/
   title: Short URL API
   version: "1.0"
 paths:

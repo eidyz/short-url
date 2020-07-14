@@ -18,7 +18,6 @@ var doc = `{
     "info": {
         "description": "{{.Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://swagger.io/terms/",
         "contact": {},
         "license": {},
         "version": "{{.Version}}"
@@ -65,10 +64,10 @@ var doc = `{
         "controller.URLWrapper": {
             "type": "object",
             "properties": {
-                "long": {
+                "fullURL": {
                     "type": "string"
                 },
-                "short": {
+                "shortURL": {
                     "type": "string"
                 }
             }
@@ -89,10 +88,10 @@ type swaggerInfo struct {
 var SwaggerInfo = swaggerInfo{
 	Version:     "1.0",
 	Host:        "",
-	BasePath:    "/v2",
+	BasePath:    "",
 	Schemes:     []string{},
 	Title:       "Short URL API",
-	Description: "Shortens given URL",
+	Description: "A little API that shortens URL's",
 }
 
 type s struct{}
